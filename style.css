@@ -31,5 +31,59 @@ body {
     position: relative;
     width: 180px;
     max-height: 200px;
-    mix-blend-mode: multiply;
+    background-image:none;
+    margin: 20px auto;
+}
+
+.hit-points {
+    width: 80px;
+    background-color: #ffff;
+    text-align: center;
+    padding: 8px 0;
+    border-radius: 30px;
+    margin-left: auto;
+    font-weight: 400;
+}
+
+.pokemon-name {
+    text-align: center;
+    font-weight: 600;
+}
+
+.pokemon-type {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px 0 40px 0;
+}
+
+.hit-points span,
+.pokemon-name span {
+    font-size: 12px;
+    letter-spacing: 0.4px;
+}
+
+.stats {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-align: center;
+}
+
+.stats p {
+    color: #404060;
+}
+
+#generate-btn {
+    display: block;
+    position: relative;
+    padding: 15px 60px;
+    font-size: 18px;
+    background-color: #101010;
+    color: #ffff;
+    margin: 30px auto;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    text-transform: capitalize;
 }
