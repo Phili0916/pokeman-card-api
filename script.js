@@ -16,16 +16,11 @@ const getPokemonData = async () => {
 }
 
 const generatePokeCard = (data) => {
-    const hpElement = document.createElement("p")
-    let totalHP = data.stats[0].base_stat;
-    hpElement.textContent = `HP ${totalHP}`;
-    hitPoints.append(hpElement)
-    hitPoints.classList.add("hit-points");
+    console.log("data", data)
+    const hp = data.stats[0].base_stat;
+    console.log("hp",hp)
+    const imgSrc = data.sprites.other.dream_world.front_default
 
-    const imgSrcElement = document.createElement("img")
-    imgSrcElement.src = data.sprites.other.dream_world.front_default
-    document.appendChild(imgSrcElement)
-    imgSrcElement.setAttribute("id", "pokemonImage")
 
     const pokemonName = data.species.name;
     console.log("pokemonName: ", pokemonName)
@@ -40,10 +35,32 @@ const generatePokeCard = (data) => {
     const statSpeed = data.stats[5].base_stat;
     console.log('statSpeed', statSpeed)
 
-
-    if (!type2)  {
-        return type1
-    }
+    card.innerHTML = `
+        <p class="hit-points">
+            <span>hp</span>
+            ${hp}
+        </p>
+        <img src=${imgSrc} alt="pokemon demo-image" id="pokemonImage"/>
+        <h2 class="pokemon-name">Some name</h2>
+        <div class="pokemon-type">
+            <span>${type1}</span>
+            <span>${type2}</span>
+        </div>
+        <div class="stats">
+            <div>
+                <h3>${statAttack}</h3>
+                <p>Attack</p>
+            </div>
+            <div>
+                <h3>${statDefence}</h3>
+                <p>Defense</p>
+            </div>
+            <div>
+                <h3>${statSpeed}</h3>
+                <p>Speed</p>
+            </div>
+        </div>
+    `
 
 
 }
