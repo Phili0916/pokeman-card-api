@@ -3,6 +3,27 @@ const card = document.getElementById("card")
 const generateBtn = document.getElementById("generate-btn")
 const hitPoints = document.querySelector(".hit-points")
 
+const colorType = {
+    normal: '#A8A77A',
+	fire: '#EE8130',
+	water: '#6390F0',
+	electric: '#F7D02C',
+	grass: '#7AC74C',
+	ice: '#96D9D6',
+	fighting: '#C22E28',
+	poison: '#A33EA1',
+	ground: '#E2BF65',
+	flying: '#A98FF3',
+	psychic: '#F95587',
+	bug: '#A6B91A',
+	rock: '#B6A136',
+	ghost: '#735797',
+	dragon: '#6F35FC',
+	dark: '#705746',
+	steel: '#B7B7CE',
+	fairy: '#D685AD',
+}
+
 const getPokemonData = async () => {
     const pokemonId = Math.floor(Math.random() * 150) +1
     // console.log(pokemonId)
@@ -16,24 +37,15 @@ const getPokemonData = async () => {
 }
 
 const generatePokeCard = (data) => {
-    console.log("data", data)
+
     const hp = data.stats[0].base_stat;
-    console.log("hp",hp)
     const imgSrc = data.sprites.other.dream_world.front_default
-
-
     const pokemonName = data.species.name;
-    console.log("pokemonName: ", pokemonName)
-    const type1 = data.types[0].type.name;
-    // console.log(type1, 'type1')
-    const type2 = data.types[1].type.name;
-    // console.log(type2, 'type2')
     const statAttack = data.stats[1].base_stat;
-    console.log('statAttack:',statAttack)
     const statDefence = data.stats[2].base_stat;
-    console.log('statDefence', statDefence)
     const statSpeed = data.stats[5].base_stat;
-    console.log('statSpeed', statSpeed)
+
+    const pokemonThemeColor = colorType[data.types[0].type.name]
 
     card.innerHTML = `
         <p class="hit-points">
@@ -41,10 +53,9 @@ const generatePokeCard = (data) => {
             ${hp}
         </p>
         <img src=${imgSrc} alt="pokemon demo-image" id="pokemonImage"/>
-        <h2 class="pokemon-name">Some name</h2>
+        <h2 class="pokemon-name">${pokemonName}</h2>
         <div class="pokemon-type">
-            <span>${type1}</span>
-            <span>${type2}</span>
+            
         </div>
         <div class="stats">
             <div>
@@ -60,9 +71,26 @@ const generatePokeCard = (data) => {
                 <p>Speed</p>
             </div>
         </div>
-    `
+    `;
 
+appendTypes(data.types)
+styleCard(pokemonThemeColor)
 
+}
+
+const appendTypes = (types) => {
+    types.forEach(itemType => {
+        let typeSpan = document.createElement("SPAN")
+        typeSpan.textContent = itemType.type.name
+        document.querySelector(".pokemon-type").appendChild(typeSpan)
+    })
+}
+
+const styleCard = (colors) => {
+    card.style.background = `radial-gradient(circle at 50% 0%, ${colors} 36%, #ffffff 36%) `
+    card.querySelectorAll(".pokemon-type span").forEach(typeColor => {
+        typeColor.style.background = colors
+    }) 
 }
 
 generateBtn.addEventListener("click", getPokemonData)

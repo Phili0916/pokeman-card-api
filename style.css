@@ -21,7 +21,6 @@ body {
     position: relative;
     width: 100%;
     padding: 30px 20px;
-    background: radial-gradient(circle at 50% 0%, orange 36%, white 36%);
     box-shadow: 0 20px 30px rgba(0, 0, 0, 1.5);
     border-radius: 10px;
 }
@@ -48,6 +47,7 @@ body {
 .pokemon-name {
     text-align: center;
     font-weight: 600;
+    text-transform: capitalize;
 }
 
 .pokemon-type {
@@ -57,9 +57,18 @@ body {
 }
 
 .hit-points span,
-.pokemon-name span {
+.pokemon-type span {
     font-size: 12px;
     letter-spacing: 0.4px;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.pokemon-type span {
+    padding: 5px 20px;
+    text-transform: capitalize;
+    border-radius: 20px;
+    color: #ffff
 }
 
 .stats {
